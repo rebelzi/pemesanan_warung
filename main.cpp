@@ -52,6 +52,7 @@ void printListMenuMakanan() {
     int columnWidth = 2;
     //print menu makanan dan harga
     cout << "Menu Makanan: " << endl;
+    cout << endl;
     for (int i = 0; i < 10; i++) {
         cout << i+1 << ". " << menuMakanan[i][0] << "\t : " << "Rp." <<menuMakanan[i][1]<< ",00";
         if (columnWidth > 0) {
@@ -71,6 +72,7 @@ void printListMenuMinuman() {
     int columnWidth=2;   
     // print menu minuman
     cout << "Menu Minuman: " << endl;
+    cout << endl;
     for (int i = 0; i < 10; i++) {
         cout << i+1 << ". " << menuMinuman[i][0] << "\t : " << "Rp." <<menuMinuman[i][1]<< ",00";
         if (columnWidth > 0) {
@@ -84,6 +86,12 @@ void printListMenuMinuman() {
 
     cout << endl << endl;
 };
+
+//membuat diskon 30% bagi yang terdaftar member
+int diskon(int harga) {
+    return harga - (0.30 * harga);
+    
+}
 
 int main() {
     string LakukanPemesanan;
@@ -136,9 +144,23 @@ int main() {
         cout << "Makanan yang dipesan: " << menuMakanan[pesananMakanan[i]-1][0] << endl;
     }
     for (int i = 0; i < jumlahMinuman; i++) {
-        cout << "Minuman yang dipesan: " << menuMinuman[pesananMinuman[i]-1][0] << endl;
-        cout << "Harga: " << menuMinuman[pesananMinuman[i]-1][1] << endl;
+        cout << "Minuman yang dipesan: \t" << menuMinuman[pesananMinuman[i]-1][0] << endl;
+        // cout << "Harga: " << menuMinuman[pesananMinuman[i]-1][1] + menuMakanan[pesananMakanan[i]-1][1] << endl;
     }
+
+    //menghitung total harga minuman dan makanan
+    int totalHargaMakanan = 0;
+    int totalHargaMinuman = 0;
+    for (int i = 0; i < jumlahMakanan; i++) {
+        totalHargaMakanan += stoi(menuMakanan[pesananMakanan[i]-1][1]);
+    }
+    for (int i = 0; i < jumlahMinuman; i++) {
+        totalHargaMinuman += stoi(menuMinuman[pesananMinuman[i]-1][1]);
+    }
+
+    int totalHarga = totalHargaMakanan + totalHargaMinuman;
+
+    cout << "Total Harga: Rp." << totalHarga << ",00" << endl;
 
 
     cout << "Nama Pemesan: " << namaPemesan << endl;
