@@ -1,5 +1,4 @@
 #include <iostream>
-#include <stdlib.h>
 using namespace std;
 
 string member[5] = {"Brian", "Dio", "Fikri", "Gerry", "Hafiz"};
@@ -31,7 +30,7 @@ string menuMinuman[10][2] = {
 
 string pemesan() {
     string nama;
-    cout << "Masukkan Nama Anda: ";
+    cout << "Masukkan Nama Pemesan: ";
     cin >> nama;
     return nama;
 }
@@ -47,7 +46,11 @@ bool isMember(string member) {
 }
 
 void printListMenuMakanan() {
-    system("clear");
+
+    // clear screen
+    printf(
+        "\033[2J"
+        "\033[1;1H" );
     // list column width by 2 columns
     int columnWidth = 2;
     //print menu makanan dan harga
@@ -62,14 +65,17 @@ void printListMenuMakanan() {
             cout << endl << endl;
             columnWidth=2;
         }
-    } 
+    }
 
     cout << endl << endl;
 };
 
 void printListMenuMinuman() {
-    system("clear");
-    int columnWidth=2;   
+    // clear screen
+    printf(
+        "\033[2J"
+        "\033[1;1H" );
+    int columnWidth=2;
     // print menu minuman
     cout << "Menu Minuman: " << endl;
     cout << endl;
@@ -89,8 +95,11 @@ void printListMenuMinuman() {
 
 //membuat diskon 30% bagi yang terdaftar member
 int diskon(int harga) {
-    return harga - (0.30 * harga);
-    
+    cout << "Anda mendapatkan diskon 30%" << endl;
+    cout << "Diskon: Rp." << harga << ",00" << " - " << "Rp." << ((30 * harga)/100) << ",00" << endl;
+    int hargaDiskon = harga - ((30 * harga)/100);
+    return hargaDiskon;
+
 }
 
 int main() {
@@ -140,15 +149,22 @@ int main() {
         pesananMinuman[i] = nomorMenu;
     }
 
+    // clear screen
+    printf(
+        "\033[2J"
+        "\033[1;1H" );
+    cout << "Makanan yang dipesan: " << endl;
     for (int i = 0; i < jumlahMakanan; i++) {
-        cout << "Makanan yang dipesan: " << menuMakanan[pesananMakanan[i]-1][0] << endl;
+        cout << "\t -" << menuMakanan[pesananMakanan[i]-1][0] << endl;
     }
+    cout << "Minuman yang dipesan: " << endl;
     for (int i = 0; i < jumlahMinuman; i++) {
-        cout << "Minuman yang dipesan: \t" << menuMinuman[pesananMinuman[i]-1][0] << endl;
+        cout << "\t -" << menuMinuman[pesananMinuman[i]-1][0] << endl;
         // cout << "Harga: " << menuMinuman[pesananMinuman[i]-1][1] + menuMakanan[pesananMakanan[i]-1][1] << endl;
     }
-
     //menghitung total harga minuman dan makanan
+    cout << "Nama Pemesan: " << namaPemesan << endl;
+    cout << "Status Member: " << (member ? "Member" : "Non Member") << endl;
     int totalHargaMakanan = 0;
     int totalHargaMinuman = 0;
     for (int i = 0; i < jumlahMakanan; i++) {
@@ -160,9 +176,9 @@ int main() {
 
     int totalHarga = totalHargaMakanan + totalHargaMinuman;
 
+    if (member) {
+        totalHarga = diskon(totalHarga);
+    }
+
     cout << "Total Harga: Rp." << totalHarga << ",00" << endl;
-
-
-    cout << "Nama Pemesan: " << namaPemesan << endl;
-    cout << "Status Member: " << member << endl;
 }
