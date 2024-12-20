@@ -108,7 +108,7 @@ int main() {
     bool member;
 
     home:
-    cout << "Lakukan Pemesanan? (Y/T)" << endl;
+    cout << "Lakukan Pemesanan? (Y/T) : ";
     cin >> LakukanPemesanan;
     if (LakukanPemesanan ==  "Y") {
         namaPemesan = pemesan();
@@ -181,4 +181,13 @@ int main() {
     }
 
     cout << "Total Harga: Rp." << totalHarga << ",00" << endl;
+
+    cout << "apakah ingin mengulang program? (Y/T) : ";
+    string ulang;
+    cin >> ulang;
+    if (ulang == "Y") {
+        goto home;
+    } else {
+        cout << "Terima Kasih" << endl;
+    }
 }
