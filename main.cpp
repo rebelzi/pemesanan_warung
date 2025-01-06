@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 using namespace std;
 
 string member[5] = {"Brian", "Dio", "Fikri", "Gerry", "Hafiz"};
