@@ -117,6 +117,7 @@ int main() {
         printListMenuMakanan();
     }  else if (LakukanPemesanan == "T"){
         cout << "Tidak Jadi Pesan" << endl;
+        return 0;
     } else {
         cout << "Inputan Salah" << endl;
         goto home;
@@ -161,7 +162,6 @@ int main() {
     cout << "Minuman yang dipesan: " << endl;
     for (int i = 0; i < jumlahMinuman; i++) {
         cout << "\t -" << menuMinuman[pesananMinuman[i]-1][0] << endl;
-        // cout << "Harga: " << menuMinuman[pesananMinuman[i]-1][1] + menuMakanan[pesananMakanan[i]-1][1] << endl;
     }
     //menghitung total harga minuman dan makanan
     cout << "Nama Pemesan: " << namaPemesan << endl;
